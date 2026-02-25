@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "FAAAAH! - Rejection Email Detector",
+  "version": "1.0",
+  "description": "Plays FAAAAH whenever you get a rejection email. You deserve to know.",
+  "permissions": [
+    "storage",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "https://mail.google.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://mail.google.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "web_accessible_resources": [{
+    "resources": ["faaaah.mp3", "offscreen.html"],
+    "matches": ["<all_urls>"]
+  }]
+}

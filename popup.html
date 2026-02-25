@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAAAAH!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 300px;
+      background: #0a0a0a;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1a0000, #0a0a0a);
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #2a0000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse at center, rgba(255,30,30,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .skull {
+      font-size: 36px;
+      display: block;
+      animation: floatSkull 3s ease-in-out infinite;
+    }
+
+    @keyframes floatSkull {
+      0%, 100% { transform: translateY(0) rotate(-3deg); }
+      50% { transform: translateY(-5px) rotate(3deg); }
+    }
+
+    .title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px;
+      color: #ff2222;
+      letter-spacing: 4px;
+      line-height: 1;
+      text-shadow: 0 0 20px rgba(255,30,30,0.5);
+    }
+
+    .subtitle {
+      font-size: 11px;
+      color: #666;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .body {
+      padding: 20px;
+    }
+
+    /* Toggle Switch */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      background: #111;
+      border-radius: 10px;
+      border: 1px solid #1f1f1f;
+      margin-bottom: 16px;
+    }
+
+    .toggle-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: #ccc;
+    }
+
+    .toggle-label span {
+      display: block;
+      font-size: 11px;
+      color: #555;
+      font-weight: 300;
+      margin-top: 2px;
+    }
+
+    .switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+    }
+
+    .switch input { display: none; }
+
+    .slider {
+      position: absolute;
+      inset: 0;
+      background: #2a2a2a;
+      border-radius: 24px;
+      cursor: pointer;
+      transition: 0.3s;
+      border: 1px solid #333;
+    }
+
+    .slider::before {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      left: 2px;
+      top: 2px;
+      background: #666;
+      border-radius: 50%;
+      transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    input:checked + .slider {
+      background: #330000;
+      border-color: #ff3333;
+    }
+
+    input:checked + .slider::before {
+      transform: translateX(20px);
+      background: #ff3333;
+      box-shadow: 0 0 8px rgba(255,50,50,0.6);
+    }
+
+    /* Stats */
+    .stats-card {
+      background: #111;
+      border: 1px solid #1f1f1f;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .stats-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px;
+      color: #ff3333;
+      line-height: 1;
+      text-shadow: 0 0 20px rgba(255,50,50,0.3);
+    }
+
+    .stats-label {
+      font-size: 11px;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 4px;
+    }
+
+    .stats-sublabel {
+      font-size: 12px;
+      color: #444;
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    /* Test button */
+    .test-btn {
+      width: 100%;
+      padding: 12px;
+      background: transparent;
+      border: 1px solid #2a2a2a;
+      border-radius: 10px;
+      color: #555;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .test-btn:hover {
+      border-color: #ff3333;
+      color: #ff3333;
+      background: rgba(255,50,50,0.05);
+    }
+
+    .test-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Rejection phrases preview */
+    .phrases-section {
+      border-top: 1px solid #1a1a1a;
+      padding-top: 14px;
+    }
+
+    .phrases-title {
+      font-size: 10px;
+      color: #444;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .phrases-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .phrase-tag {
+      font-size: 10px;
+      color: #555;
+      background: #111;
+      border: 1px solid #1f1f1f;
+      border-radius: 4px;
+      padding: 3px 7px;
+    }
+
+    /* Status indicator */
+    .status-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 6px;
+      background: #ff3333;
+      box-shadow: 0 0 6px rgba(255,50,50,0.6);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .status-dot.off {
+      background: #333;
+      box-shadow: none;
+      animation: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.85); }
+    }
+
+    .status-text {
+      font-size: 11px;
+      color: #555;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    /* motivational message */
+    .motivation {
+      text-align: center;
+      font-size: 11px;
+      color: #333;
+      font-style: italic;
+      padding-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <span class="skull">💀</span>
+    <div class="title">FAAAAH!</div>
+    <div class="subtitle">Rejection Email Detector</div>
+  </div>
+
+  <div class="body">
+
+    <div class="status-text">
+      <span class="status-dot" id="statusDot"></span>
+      <span id="statusText">Watching Gmail for rejections...</span>
+    </div>
+
+    <div class="toggle-row">
+      <div class="toggle-label">
+        Enable FAAAAH
+        <span>Play sound on rejection emails</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="enableToggle" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="stats-card">
+      <div class="stats-number" id="faaaahCount">0</div>
+      <div class="stats-label">Times FAAAAAHed</div>
+      <div class="stats-sublabel" id="motivationMsg">Keep applying, champ. 🫡</div>
+    </div>
+
+    <button class="test-btn" id="testBtn">🔊 Test the FAAAAH sound</button>
+
+    <div class="phrases-section">
+      <div class="phrases-title">Detects phrases like</div>
+      <div class="phrases-list">
+        <span class="phrase-tag">not selected</span>
+        <span class="phrase-tag">other candidates</span>
+        <span class="phrase-tag">regret to inform</span>
+        <span class="phrase-tag">not a match</span>
+        <span class="phrase-tag">filled the position</span>
+        <span class="phrase-tag">different direction</span>
+        <span class="phrase-tag">+ 20 more</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
