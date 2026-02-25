@@ -22,6 +22,7 @@
 The extension watches Gmail for emails containing rejection phrases like
 "moving forward with other candidates", "we regret to inform", "not the right fit" etc.
 When detected it plays the sound and shows the overlay.
+To see the full list of detected phrases, check the content.js
 
 ## Contributing
 Found a rejection phrase that's not detected? Open an issue or PR!
